@@ -9,7 +9,7 @@ export default class Home extends React.Component {
     super(props)
     this.state={
       listData:[],
-      url:"http://localhost:5000/"
+      url:"http://localhost:5000"
     }
   }
   componentDidMount(){
@@ -17,6 +17,7 @@ export default class Home extends React.Component {
   }
   getStars=()=>{
     const {url}=this.state
+    
     axios.get(url).then(response=>{
       return this.setState({
         listData:response.data.data
@@ -30,14 +31,14 @@ export default class Home extends React.Component {
   renderItem=({item,index})=>(
     <ListItem
      key={index}
-     title={`Star : ${item.Star_name}`}
-     subtitle={`Distance From Earth :${item.Distance} `}
+     title={`Star : ${item.name}`}
+     subtitle={`Distance From Earth :${item.distance} `}
      titleStyle={styles.title}
      containerStyle={styles.listContainer}
      bottomDivider
      chevron
      onPress={()=>
-    this.props.navigation.navigate("Details",{Star_name:item.name})}
+    this.props.navigation.navigate("Details",{name:item.name})}
     />
 
   )
